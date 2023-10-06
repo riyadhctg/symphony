@@ -17,7 +17,6 @@ package main
 
 import (
     "context"
-    "errors"
     "fmt"
 
     "github.com/grab/symphony"
@@ -28,7 +27,6 @@ type User struct {
     Weight float64
     Height float64
     BMI float64
-
 }
 
 
@@ -41,7 +39,7 @@ func main() {
 
     // Define Task fetchWeight, fetchHeight, calculateBMI
     // Task can be declare in any order
-    s.Add("fetchWeight", nil, func(res map[string]*symphony.TaskState) (interface{}, error)){
+    s.Add("fetchWeight", nil, func(res map[string]*symphony.TaskState) (interface{}, error){
         // assume a remote WeightService call  
         u.Weight = callWeightService(u.ID)
         return "weight fetched ", nil
@@ -73,11 +71,17 @@ package main
 
 import (
     "context"
-    "errors"
     "fmt"
 
     "github.com/grab/symphony"
 )
+
+type User struct {
+    ID int64
+    Weight float64
+    Height float64
+    BMI float64
+}
 
 // an example func to log the latency. This is just to print the latency in console, but you can call other log utils too.
 // this function will be called after the symphony finished a task.
@@ -102,7 +106,7 @@ func main() {
 
     // Define Task fetchWeight, fetchHeight, calculateBMI
     // Task can be declare in any order
-    s.Add("fetchWeight", nil, func(res map[string]*symphony.TaskState) (interface{}, error)){
+    s.Add("fetchWeight", nil, func(res map[string]*symphony.TaskState) (interface{}, error){
         // assume a remote WeightService call  
         u.Weight = callWeightService(u.ID)
         return "weight fetched ", nil
@@ -140,11 +144,17 @@ package main
 
 import (
     "context"
-    "errors"
     "fmt"
 
     "github.com/grab/symphony"
 )
+
+type User struct {
+    ID int64
+    Weight float64
+    Height float64
+    BMI float64
+}
 
 func main() {
     s := symphony.New()
